@@ -1,0 +1,64 @@
+package com.apusart.skryptowe_projekt_android.ui.guest.login_activity
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.apusart.evently_android.guest.login_activity.LoginActivityViewModel
+import com.apusart.skryptowe_projekt_android.R
+import com.apusart.skryptowe_projekt_android.api.handleResource
+import com.apusart.skryptowe_projekt_android.appComponent
+import com.apusart.skryptowe_projekt_android.databinding.LoginBinding
+import com.apusart.skryptowe_projekt_android.tools.Tools
+import com.apusart.skryptowe_projekt_android.ui.guest.register_activity.RegisterActivity
+import com.apusart.skryptowe_projekt_android.ui.logged.main.MainLoggedActivity
+import kotlinx.android.synthetic.main.login.*
+import javax.inject.Inject
+
+
+class LoginActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModel: LoginActivityViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent.inject(this)
+        super.onCreate(savedInstanceState)
+
+        val binding: LoginBinding = DataBindingUtil.setContentView(this, R.layout.login)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        login_email_login_button.setOnClickListener {
+            Tools.hideKeyboard(this)
+            viewModel.logIn()
+        }
+
+        login_register_text.setOnClickListener {
+            startActivity(
+                Intent(this, RegisterActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            )
+        }
+
+        viewModel.user.observe(this, { res ->
+            handleResource(res,
+                onSuccess = {
+                    startActivity(
+                        Intent(this, MainLoggedActivity::class.java)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    )
+                },
+                onPending = {
+                    login_email_login_button.transitionToEnd()
+                },
+                onError = { msg, _ ->
+                    login_email_login_button.transitionToStart()
+                    login_error_modal.modalInformation = msg
+                    login_error_modal.isActive = true
+                })
+        })
+
+    }
+}

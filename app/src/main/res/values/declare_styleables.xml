@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressButton">
+        <attr name="button_name" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="InfoModal">
+        <attr name="modal_background" format="reference" />
+        <attr name="modal_title" format="string" />
+        <attr name="modal_information" format="string" />
+        <attr name="modal_text_color" format="color" />
+        <attr name="modal_icon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ProfileButton">
+        <attr name="profile_button_name" format="string" />
+        <attr name="profile_button_underline_color" format="color" />
+        <attr name="profile_button_icon" format="reference" />
+        <attr name="profile_button_icon_tint" format="color" />
+        <attr name="profile_button_is_underline_visible" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ProgressView">
+        <attr name="progress_view_count" format="integer" />
+        <attr name="progress_view_current" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="MainInput">
+        <attr name="main_input_input" format="string" />
+        <attr name="main_input_input_title" format="string" />
+        <attr name="android:imeOptions" format="flags" />
+        <attr name="android:inputType" format="flags" />
+        <attr name="edit_text_height" format="dimension" />
+        <attr name="android:gravity" format="flags" />
+    </declare-styleable>
+
+    <declare-styleable name="HeaderView">
+        <attr name="header_view_title" format="string" />
+        <attr name="header_view_subtitle" format="string" />
+        <attr name="header_view_leading_icon" format="reference" />
+        <attr name="header_view_trailing_icon" format="reference" />
+    </declare-styleable>
+</resources>

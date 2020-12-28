@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="button">
+        <item name="android:textAppearance">@style/ButtonRoboto14Pt</item>
+    </style>
+    <style name="button.primary">
+        <item name="android:background">@drawable/primary_button_background</item>
+    </style>
+
+    <style name="FacebookLoginButton">
+        <item name="android:textSize">14sp</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="button.loginButton">
+        <item name="cardCornerRadius">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="button.loginButton.facebook">
+        <item name="cardBackgroundColor">#3b5998</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="button.loginButton.gmail">
+        <item name="cardBackgroundColor">@color/white</item>
+
+    </style>
+
+
+</resources>
