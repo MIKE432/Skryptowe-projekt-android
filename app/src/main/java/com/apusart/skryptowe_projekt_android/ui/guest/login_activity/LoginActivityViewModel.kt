@@ -1,6 +1,7 @@
 package com.apusart.evently_android.guest.login_activity
 
 import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,10 +15,16 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
 
-class LoginActivityViewModel @Inject constructor(userRepository: UserRepository): ViewModel() {
+class LoginActivityViewModel @Inject constructor(val userRepository: UserRepository): ViewModel() {
     val emailText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
     val user = MutableLiveData<Resource<User>>()
+
+    fun uploadImage(filePath: String) {
+        viewModelScope.launch {
+            userRepository.uploadPhoto(filePath)
+        }
+    }
 
     fun logIn() {
         viewModelScope.launch {

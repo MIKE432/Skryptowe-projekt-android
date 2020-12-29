@@ -2,6 +2,7 @@ package com.apusart.skryptowe_projekt_android.ui.guest.login_activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,7 +11,9 @@ import com.apusart.skryptowe_projekt_android.R
 import com.apusart.skryptowe_projekt_android.api.handleResource
 import com.apusart.skryptowe_projekt_android.appComponent
 import com.apusart.skryptowe_projekt_android.databinding.LoginBinding
+import com.apusart.skryptowe_projekt_android.tools.Codes
 import com.apusart.skryptowe_projekt_android.tools.Tools
+import com.apusart.skryptowe_projekt_android.tools.getPathFromUri
 import com.apusart.skryptowe_projekt_android.ui.guest.register_activity.RegisterActivity
 import com.apusart.skryptowe_projekt_android.ui.logged.main.MainLoggedActivity
 import kotlinx.android.synthetic.main.login.*
@@ -33,6 +36,15 @@ class LoginActivity : AppCompatActivity() {
         login_email_login_button.setOnClickListener {
             Tools.hideKeyboard(this)
             viewModel.logIn()
+        }
+
+        login_forgot_password.setOnClickListener {
+            Intent(
+                Intent.ACTION_PICK
+            ).also {
+                it.type = "image/*"
+                startActivityForResult(it, Codes.GET_PHOTO_CODE)
+            }
         }
 
         login_register_text.setOnClickListener {
@@ -60,5 +72,14 @@ class LoginActivity : AppCompatActivity() {
                 })
         })
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Codes.GET_PHOTO_CODE) {
+            val imageUri = data?.data
+            if (imageUri != null)
+                viewModel.uploadImage(getPathFromUri(imageUri, applicationContext))
+        }
     }
 }
