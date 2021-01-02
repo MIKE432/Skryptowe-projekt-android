@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingProcessViewModel"    />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="10dp">
+        <com.apusart.components.MainInput
+            android:id="@+id/add_training_details_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:main_input_input_title="Training name"
+            app:main_input_input="@={viewModel.trainingName}"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            />
+        <com.apusart.components.MainInput
+            android:id="@+id/add_training_details_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/add_training_details_name"
+            app:main_input_input_title="About"
+            app:main_input_input="@={viewModel.trainingAbout}"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            app:edit_text_height="120dp"
+            android:gravity="bottom"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/add_training_details_about">
+            <TextView
+                android:id="@+id/main_input_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Training type"
+                style="@style/Roboto14Pt"/>
+            <TextView
+                android:id="@+id/main_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Roboto14Pt"
+                android:text="@{viewModel.trainingType}"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

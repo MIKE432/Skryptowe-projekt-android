@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/trainings_page"
+        android:enabled="true"
+        android:icon="@drawable/home_icon64"
+        android:title="@string/events"
+        />
+    <item
+        android:id="@+id/search_page"
+        android:enabled="true"
+        android:icon="@drawable/loupe_icon64"
+        android:title="@string/search"
+        />
+    <item
+        android:id="@+id/add_training_page"
+        android:enabled="true"
+        android:icon="@drawable/plus_icon64"
+        android:title="@string/add"
+        />
+    <item
+        android:id="@+id/profile_page"
+        android:enabled="true"
+        android:icon="@drawable/user_icon64"
+        android:title="@string/profile"
+        />
+</menu>

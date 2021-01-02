@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_logged_user_graph"
+    app:startDestination="@id/trainingsFragment">
+
+    <fragment
+        android:id="@+id/trainingsFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.trainings.TrainingsFragment"
+        android:label="TrainingsFragment" >
+        <action
+            android:id="@+id/action_trainingsFragment_to_trainingDetails"
+            app:destination="@id/trainingDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTrainingFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.add_training.AddTrainingFragment"
+        android:label="AddTrainingFragment" >
+        <action
+            android:id="@+id/action_addTrainingFragment_to_addTrainingProcessActivity"
+            app:destination="@id/addTrainingProcessActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.search.SearchFragment"
+        android:label="SearchFragment" />
+    <fragment
+        android:id="@+id/trainingDetails"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.TrainingDetails"
+        android:label="TrainingDetails">
+        <argument
+            android:name="training"
+            app:argType="com.apusart.skryptowe_projekt_android.api.models.TrainingSafeArg"
+            />
+        <action
+            android:id="@+id/action_trainingDetails_to_exerciseDetailsFragment"
+            app:destination="@id/exerciseDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseDetailsFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.ExerciseDetailsFragment"
+        android:label="ExerciseDetailsFragment">
+        <argument
+            android:name="exercise"
+            app:argType="com.apusart.skryptowe_projekt_android.api.models.ExerciseSafeArg"
+            />
+    </fragment>
+    <activity
+        android:id="@+id/addTrainingProcessActivity"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingProcessActivity"
+        android:label="AddTrainingProcessActivity" >
+        <argument
+            android:name="trainingType"
+            app:argType="string"/>
+    </activity>
+</navigation>

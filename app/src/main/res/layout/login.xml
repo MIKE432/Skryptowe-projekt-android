@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.apusart.evently_android.guest.login_activity.LoginActivityViewModel"
+            type="com.apusart.skryptowe_projekt_android.ui.guest.login_activity.LoginActivityViewModel"
             />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -56,7 +56,7 @@
                     app:main_input_input_title="@string/email_address"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    app:main_input_input="@={viewModel.emailText}"/>
+                    app:main_input_input="@={viewModel.nickText}"/>
 
                 <com.apusart.components.MainInput
                     android:id="@+id/login_password_container"

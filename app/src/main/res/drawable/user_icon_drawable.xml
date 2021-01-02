@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/user_icon64" android:width="32dp" android:height="32dp">
+        <shape>
+            <padding android:bottom="22dp" android:left="22dp" android:right="22dp" android:top="22dp" />
+        </shape>
+    </item>
+</layer-list>

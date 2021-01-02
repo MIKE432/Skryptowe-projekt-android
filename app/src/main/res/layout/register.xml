@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.apusart.evently_android.guest.register_activity.RegisterActivityViewModel" />
+            type="com.apusart.skryptowe_projekt_android.ui.guest.register_activity.RegisterActivityViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,13 +53,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:main_input_input_title="@string/email_address"
-                    app:main_input_input="@={viewModel.emailText}"/>
+                    app:main_input_input_title="@string/nick"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    app:main_input_input="@={viewModel.nickText}"/>
+                <com.apusart.components.MainInput
+                    android:id="@+id/register_name_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/register_email_container"
+                    app:main_input_input_title="@string/name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    app:main_input_input="@={viewModel.nameText}"/>
+                <com.apusart.components.MainInput
+                    android:id="@+id/register_surname_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/register_name_container"
+                    app:main_input_input_title="@string/surname"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    app:main_input_input="@={viewModel.surnameText}"/>
                 <com.apusart.components.MainInput
                     android:id="@+id/register_password_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/register_email_container"
+                    app:layout_constraintTop_toBottomOf="@id/register_surname_container"
                     android:layout_marginTop="10dp"
                     app:main_input_input_title="@string/password"
                     android:imeOptions="actionDone"

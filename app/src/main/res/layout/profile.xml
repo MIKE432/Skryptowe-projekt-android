@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/LoggedTheme">
+
+    <com.apusart.skryptowe_projekt_android.ui.components.ProfilePicture
+        android:id="@+id/profile_page_user_picture"
+        android:layout_width="148dp"
+        android:layout_height="148dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="72dp" />
+
+    <TextView
+        android:id="@+id/profile_page_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profile_page_user_picture"
+        tools:text="Michał Raszczuk"
+        android:textAppearance="@style/HeadlineRoboto24Pt"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/profile_page_user_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginTop="20dp">
+        <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
+            android:id="@+id/profile_page_settings_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="5dp"
+            app:profile_button_name="@string/settings"
+            app:profile_button_icon="@drawable/settings_icon128"
+            />
+
+        <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
+            android:id="@+id/profile_page_edit_profile_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/profile_page_settings_button"
+            app:profile_button_name="@string/edit_profile"
+            app:profile_button_icon="@drawable/edit_icon128"
+            />
+
+        <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
+            android:id="@+id/profile_page_inbox_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/profile_page_edit_profile_button"
+            android:layout_marginTop="5dp"
+            app:profile_button_name="@string/added_trainings"
+            app:profile_button_icon="@drawable/inbox_icon128"
+            android:background="@drawable/profile_button_background"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
+        android:id="@+id/profile_page_logout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        app:profile_button_name="@string/sign_out"
+        app:profile_button_icon="@drawable/logout_icon128"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:profile_button_is_underline_visible="false"
+        android:background="@drawable/profile_button_background"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

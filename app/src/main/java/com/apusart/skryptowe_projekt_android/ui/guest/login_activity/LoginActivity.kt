@@ -2,13 +2,10 @@ package com.apusart.skryptowe_projekt_android.ui.guest.login_activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.apusart.evently_android.guest.login_activity.LoginActivityViewModel
 import com.apusart.skryptowe_projekt_android.R
-import com.apusart.skryptowe_projekt_android.api.handleResource
+import com.apusart.skryptowe_projekt_android.api.models.handleResource
 import com.apusart.skryptowe_projekt_android.appComponent
 import com.apusart.skryptowe_projekt_android.databinding.LoginBinding
 import com.apusart.skryptowe_projekt_android.tools.Codes
@@ -42,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
             Intent(
                 Intent.ACTION_PICK
             ).also {
-                it.type = "image/*"
+                it.type = "image/jpg"
                 startActivityForResult(it, Codes.GET_PHOTO_CODE)
             }
         }

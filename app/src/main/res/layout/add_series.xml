@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:elevation="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.apusart.components.MainInput
+                android:id="@+id/add_series_iteration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:main_input_input_title="Iteration"
+                android:imeOptions="actionNext"
+                android:inputType="number"/>
+            <com.apusart.components.MainInput
+                android:id="@+id/add_series_rest_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_series_iteration"
+                android:layout_marginStart="10dp"
+                app:main_input_input_title="Rest time"
+                android:imeOptions="actionNext"
+                android:inputType="number"/>
+            <ImageView
+                android:id="@+id/add_series_remove_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/close_icon128"/>
+            <ImageView
+                android:id="@+id/add_series_add_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/add_series_remove_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/plus_icon64"/>
+            <View
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/black"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            android:id="@+id/add_series_add_exercise"
+            layout="@layout/add_exercise" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/add_series_exercises_list"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

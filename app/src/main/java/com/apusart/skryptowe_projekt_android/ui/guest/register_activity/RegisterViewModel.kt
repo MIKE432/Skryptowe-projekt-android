@@ -1,29 +1,26 @@
-package com.apusart.evently_android.guest.register_activity
+package com.apusart.skryptowe_projekt_android.ui.guest.register_activity
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apusart.skryptowe_projekt_android.api.Resource
-import com.apusart.skryptowe_projekt_android.api.User
+import com.apusart.skryptowe_projekt_android.api.models.Resource
+import com.apusart.skryptowe_projekt_android.api.models.User
 import com.apusart.skryptowe_projekt_android.api.repositories.UserRepository
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import javax.inject.Inject
 
-class RegisterActivityViewModel @Inject constructor(userRepository: UserRepository): ViewModel() {
-    val emailText = MutableLiveData<String>()
+class RegisterActivityViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
+    val nickText = MutableLiveData<String>()
     val passwordText = MutableLiveData<String>()
-    val user = MutableLiveData<Resource<FirebaseUser>>()
+    val nameText = MutableLiveData<String>()
+    val surnameText = MutableLiveData<String>()
+    val user = MutableLiveData<Resource<User>>()
 
     fun register() {
         viewModelScope.launch {
             try {
-                if (emailText.value == null || emailText.value.equals("")) {
+                if (nickText.value == null || nickText.value.equals("")) {
                     return@launch
                 }
 
@@ -31,7 +28,7 @@ class RegisterActivityViewModel @Inject constructor(userRepository: UserReposito
                     return@launch
                 }
                 user.value = Resource.pending()
-//                user.value = userRepository.register(emailText.value!!, passwordText.value!!)
+                user.value = userRepository.registerUser(nickText.value!!, nameText.value!!, surnameText.value!!, passwordText.value!!)
             } catch (e: Exception) {
                 user.value = Resource.error(e.message)
             }

@@ -41,4 +41,33 @@
     <string name="find_category">Find Category</string>
     <string name="add_photo">Add photo</string>
     <string name="cover_photo">Cover photo</string>
+    <string name="nick">Nick</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="added_trainings">Added trainings</string>
+    <string name="training_calories">%1$d cal</string>
+    <string name="trainings">Trainings</string>
+    <string name="find_training">Find training</string>
+    <string name="add_training">Add training</string>
+    <string name="pick_training_type">Pick training type</string>
+    <string name="rest">Rest</string>
+    <string name="rest_time_in_seconds">%1$d s</string>
+    <string name="iteration">%1$d x</string>
+    <string name="calories_about">~ %1$d cal</string>
+    <string name="number_exercise">x %1$d</string>
+    <string name="about">About</string>
+    <string name="yt_link">Watch short instruction video</string>
+    <string name="add_exercise">Add exercise</string>
+    <string-array name="exercises_type">
+        <item>OTHER</item>
+        <item>ABS</item>
+        <item>ARM</item>
+        <item>BACK</item>
+        <item>CHEST</item>
+        <item>COOLDOWN</item>
+        <item>LEG</item>
+        <item>SHOULDER</item>
+        <item>STRETCHING</item>
+        <item>WARMUP</item>
+    </string-array>
 </resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_training_process_graph.xml"
+    app:startDestination="@id/addTrainingDetailsFragment">
+
+    <fragment
+        android:id="@+id/addTrainingDetailsFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingDetailsFragment"
+        android:label="AddTrainingDetailsFragment" />
+    <fragment
+        android:id="@+id/addTrainingAddSeriesFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingAddSeriesFragment"
+        android:label="AddTrainingAddSeriesFragment" />
+    <fragment
+        android:id="@+id/addTrainingPreviewFragment"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingPreviewFragment"
+        android:label="AddTrainingPreviewFragment" />
+</navigation>

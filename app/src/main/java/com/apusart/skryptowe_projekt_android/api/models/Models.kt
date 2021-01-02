@@ -1,14 +1,11 @@
-package com.apusart.skryptowe_projekt_android.api
+package com.apusart.skryptowe_projekt_android.api.models
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
-@Entity
-data class User(
-    @PrimaryKey val user_id: Int,
-    @ColumnInfo(name = "title") val name: String
-)
+import com.google.gson.GsonBuilder
+import kotlinx.android.parcel.Parcelize
 
 class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     enum class Status {
@@ -26,7 +23,7 @@ class Resource<out T>(val status: Status, val data: T?, val message: String?) {
             return Resource(Status.PENDING, null, message)
         }
 
-        fun<T> error(message: String?, data: T? = null): Resource<T> {
+        fun<T> error(message: String? = "", data: T? = null): Resource<T> {
             return Resource(Status.ERROR, data, message)
         }
     }
@@ -44,3 +41,26 @@ fun <T> handleResource(
         Resource.Status.ERROR -> onError(res.message, res.data)
     }
 }
+
+fun parseErrorBody(errorBody: String?): ErrorBody {
+    if (errorBody == null)
+        return ErrorBody()
+
+    val gson = GsonBuilder().create()
+    return gson.fromJson(errorBody, ErrorBody::class.java)
+}
+
+data class ErrorBody(
+    val code: Int? = -1,
+    val message: String? = ""
+)
+
+data class CodeAndStatusResponse(
+    val code: Int?,
+    val message: String?
+)
+
+data class TrainingType(
+    val type: String = "OTHER",
+    val about: String = ""
+)

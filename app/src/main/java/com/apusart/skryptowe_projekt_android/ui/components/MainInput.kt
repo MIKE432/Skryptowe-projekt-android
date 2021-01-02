@@ -19,6 +19,15 @@ class MainInput(context: Context, attributeSet: AttributeSet) :
     val view = LayoutInflater.from(context)
         .inflate(R.layout.main_input, this, false)
 
+    var text: String = ""
+        set(value) {
+            view.main_input_edit_text.setText(value)
+            field = value
+        }
+        get() {
+            return view.main_input_edit_text.text.toString()
+        }
+
     init {
         context.theme.obtainStyledAttributes(
             attributeSet,

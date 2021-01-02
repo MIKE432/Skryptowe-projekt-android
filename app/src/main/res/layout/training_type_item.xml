@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:cardElevation="4dp"
+    android:layout_margin="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:background="@drawable/white_ripple">
+        <TextView
+            android:id="@+id/training_type_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/HeadlineRoboto24Pt"
+            android:text="@string/_public" />
+        <TextView
+            android:id="@+id/training_type_item_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/public_visibility_about"
+            app:layout_constraintTop_toBottomOf="@id/training_type_item_title"
+            style="@style/Roboto14Pt"
+            android:layout_marginTop="5dp" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/next_icon128"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/training_type_item_title"
+            app:layout_constraintTop_toTopOf="@id/training_type_item_title"
+            android:layout_marginEnd="2dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

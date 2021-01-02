@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <com.apusart.components.MainInput
+                android:id="@+id/add_exercise_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/add_exercise_number"
+                app:main_input_input_title="Exercise name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                />
+            <com.apusart.components.MainInput
+                android:id="@+id/add_exercise_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_exercise_name"
+                app:layout_constraintEnd_toStartOf="@id/add_exercise_calories"
+                android:layout_marginHorizontal="10dp"
+                app:main_input_input_title="Iteration"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                />
+            <com.apusart.components.MainInput
+                android:id="@+id/add_exercise_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_exercise_number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:main_input_input_title="Calories"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                />
+            <com.apusart.components.MainInput
+                android:id="@+id/add_exercise_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/add_exercise_name"
+                app:main_input_input_title="About"
+                android:imeOptions="actionNext"
+                android:inputType="textMultiLine" />
+            <com.apusart.components.MainInput
+                android:id="@+id/add_exercise_yt_link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/add_exercise_about"
+                app:main_input_input_title="YouTube link"
+                android:imeOptions="actionNext"
+                android:inputType="textNoSuggestions" />
+
+            <ImageView
+                android:id="@+id/add_exercise_photo"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/add_picture"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_exercise_yt_link" />
+            <Spinner
+                android:id="@+id/add_exercise_exercise_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/add_exercise_yt_link"
+                app:layout_constraintStart_toEndOf="@id/add_exercise_photo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/add_exercise_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/button.primary"
+            android:layout_margin="5dp"
+            android:text="@string/add_exercise"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
