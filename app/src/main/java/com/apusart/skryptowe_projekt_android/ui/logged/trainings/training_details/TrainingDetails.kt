@@ -35,6 +35,7 @@ class TrainingDetails : Fragment(R.layout.training_details) {
 
         training_details_header.title = navArgs.training.name
         training_details_header.subtitle = navArgs.training.creator_nick
+        training_details_about.text = navArgs.training.about
         training_details_header.setOnLeadingIconClickListener {
             requireActivity().onBackPressed()
         }

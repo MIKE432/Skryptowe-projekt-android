@@ -1,6 +1,7 @@
 package com.apusart.skryptowe_projekt_android.ui.components
 
 import android.content.Context
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.apusart.skryptowe_projekt_android.R
 import com.apusart.skryptowe_projekt_android.api.models.ExerciseAddRequest
 import com.apusart.skryptowe_projekt_android.api.models.SeriesAddRequest
+import com.apusart.skryptowe_projekt_android.tools.getPathFromUri
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.add_exercise.view.*
 import kotlinx.android.synthetic.main.add_series.view.*
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
@@ -25,6 +28,25 @@ class AddSeriesView(context: Context, attributeSet: AttributeSet) :
     private lateinit var commit: () -> Unit
     private val exercisesAdapter = ExercisesAdapter()
     private val exercises = mutableListOf<ExerciseAddRequest>()
+    var currentPhoto: Uri? = null
+        set(value) {
+            if (value != null) {
+                Glide.with(this)
+                    .load(value)
+                    .into(view.add_series_add_exercise.add_exercise_photo)
+
+
+            } else {
+                Glide.with(this)
+                    .load(R.drawable.add_picture)
+                    .into(view.add_series_add_exercise.add_exercise_photo)
+            }
+            field = value
+        }
+
+    fun setOnPhotoClickListener(f: (View) -> Unit) {
+        view.add_series_add_exercise.add_exercise_photo.setOnClickListener(f)
+    }
 
     init {
         exercisesAdapter.submitList(exercises)
@@ -46,6 +68,7 @@ class AddSeriesView(context: Context, attributeSet: AttributeSet) :
             val number = view.add_series_add_exercise.add_exercise_number.text
             val calories = view.add_series_add_exercise.add_exercise_calories.text
             val about = view.add_series_add_exercise.add_exercise_about.text
+            val photo = currentPhoto?.let { uri -> getPathFromUri(uri, context) }
             val ytLink = view.add_series_add_exercise.add_exercise_yt_link.text
             val type =
                 view.add_series_add_exercise.add_exercise_exercise_type.selectedItem as String
@@ -56,7 +79,7 @@ class AddSeriesView(context: Context, attributeSet: AttributeSet) :
                     about,
                     number.toInt(),
                     ytLink,
-                    null,
+                    photo,
                     type,
                     calories.toInt()
                 )
@@ -85,6 +108,7 @@ class AddSeriesView(context: Context, attributeSet: AttributeSet) :
         view.add_series_add_exercise.add_exercise_yt_link.text = ""
         view.add_series_add_exercise.add_exercise_exercise_type.setSelection(0)
         view.add_series_add_exercise.add_exercise_name.requestFocus()
+        currentPhoto = null
     }
 
     private fun resetForm() {

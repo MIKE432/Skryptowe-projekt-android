@@ -35,15 +35,6 @@ class LoginActivity : AppCompatActivity() {
             viewModel.logIn()
         }
 
-        login_forgot_password.setOnClickListener {
-            Intent(
-                Intent.ACTION_PICK
-            ).also {
-                it.type = "image/jpg"
-                startActivityForResult(it, Codes.GET_PHOTO_CODE)
-            }
-        }
-
         login_register_text.setOnClickListener {
             startActivity(
                 Intent(this, RegisterActivity::class.java)

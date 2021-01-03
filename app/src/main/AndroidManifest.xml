@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.guest.login_activity.LoginActivity" android:theme="@style/LoginTheme" android:noHistory="true"/>
+        <activity android:name=".ui.guest.login_activity.LoginActivity" android:theme="@style/LoginTheme" />
         <activity android:name=".ui.guest.register_activity.RegisterActivity" android:theme="@style/LoginTheme" android:noHistory="true"/>
         <activity android:name=".ui.logged.main.MainLoggedActivity" android:theme="@style/LoggedTheme"/>
         <activity android:name=".ui.logged.add_training.add_training_process.AddTrainingProcessActivity" android:theme="@style/LoggedTheme"/>

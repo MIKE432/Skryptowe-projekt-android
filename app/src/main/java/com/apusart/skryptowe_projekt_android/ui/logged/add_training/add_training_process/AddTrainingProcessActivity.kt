@@ -1,6 +1,8 @@
 package com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process
 
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -9,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
 import com.apusart.skryptowe_projekt_android.R
+import com.apusart.skryptowe_projekt_android.api.models.handleResource
 import com.apusart.skryptowe_projekt_android.appComponent
 import com.apusart.skryptowe_projekt_android.databinding.AddTrainingProcessBinding
 import com.apusart.skryptowe_projekt_android.databinding.RegisterBinding
@@ -18,10 +21,15 @@ import javax.inject.Inject
 
 class AddTrainingProcessActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: AddTrainingProcessViewModel
+    private val viewModel: AddTrainingProcessViewModel by viewModels()
+
     private val destinations = listOf(
-        AddTrainingDestination("Training Details", "", R.id.addTrainingDetailsFragment, "Add Series"),
+        AddTrainingDestination(
+            "Training Details",
+            "",
+            R.id.addTrainingDetailsFragment,
+            "Add Series"
+        ),
         AddTrainingDestination("Add Series", "", R.id.addTrainingAddSeriesFragment, "Preview"),
         AddTrainingDestination("Preview", "", R.id.addTrainingPreviewFragment, "Add training")
     )
@@ -41,18 +49,41 @@ class AddTrainingProcessActivity : AppCompatActivity() {
             setupNewView(it)
         })
 
+        viewModel.setTrainingType(navArgs.trainingType)
         add_training_process_header.setOnLeadingIconClickListener {
-            viewModel.decrement()
+            if (viewModel.step.value == 0)
+                finish()
+            else
+                viewModel.decrement()
         }
 
         add_training_process_progress_button.setOnClickListener {
-            viewModel.increment()
+            if (viewModel.max - 1 == viewModel.step.value)
+                viewModel.createTraining()
+            else
+                viewModel.increment()
         }
+
+        viewModel.createdTraining.observe(this, { res ->
+            handleResource(res,
+                onSuccess = {
+                    finish()
+                },
+                onPending = {
+                    add_training_process_progress_button.transitionToEnd()
+                }, onError = { msg, _ ->
+                    add_training_process_progress_button.transitionToStart()
+                    Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+                })
+        })
     }
 
     private fun setupNewView(step: Int) {
         val navController = findNavController(R.id.add_training_process_fragment_container)
-        navController.navigate(destinations[step].destination, bundleOf("trainingType" to navArgs.trainingType))
+        navController.navigate(
+            destinations[step].destination,
+            bundleOf("trainingType" to navArgs.trainingType)
+        )
         add_training_process_header.title = destinations[step].title
         add_training_process_header.subtitle = destinations[step].subtitle
         add_training_process_progress_button.title = destinations[step].buttonText

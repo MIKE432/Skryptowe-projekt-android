@@ -20,6 +20,7 @@ class UserRemoteService @Inject constructor(
         val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
 
         val body = MultipartBody.Part.createFormData("avatar", file.name, requestFile)
+
         service.put(8, "tO7XMlfY9KFrj6KNZ33Vgtr3A", body)
     }
 

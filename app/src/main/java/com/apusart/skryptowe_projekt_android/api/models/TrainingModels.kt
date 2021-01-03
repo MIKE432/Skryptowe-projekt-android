@@ -11,7 +11,7 @@ data class Training(
     val is_public: Boolean,
     val training_type: String,
     val created_by: Int,
-    val series: List<Series>
+    val series: List<Series> = listOf()
 )
 
 data class Series(
@@ -19,7 +19,7 @@ data class Series(
     val iteration: Int,
     val rest_time: Int,
     val training_id: Int,
-    val exercises: List<Exercise>
+    val exercises: List<Exercise> = listOf()
 )
 
 data class Exercise(
@@ -48,7 +48,8 @@ data class TrainingForList (
 data class TrainingSafeArg(
     val training_id: Int,
     val creator_nick: String,
-    val name: String
+    val name: String,
+    val about: String
 ): Parcelable
 
 @Parcelize
@@ -74,4 +75,17 @@ data class ExerciseAddRequest(
     val photo: String?,
     val exercise_type: String,
     val exercise_calories: Int
+)
+
+data class SeriesRawBody(
+    val iteration: Int,
+    val rest_time: Int
+)
+
+data class TrainingRawBody(
+    val name: String,
+    val about: String,
+    val is_public: Boolean,
+    val training_type: String,
+    val training_calories: Int
 )

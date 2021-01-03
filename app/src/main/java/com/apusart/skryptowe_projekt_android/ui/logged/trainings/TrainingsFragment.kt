@@ -89,7 +89,7 @@ class TrainingForListViewHolder(container: View) : RecyclerView.ViewHolder(conta
                 resources.getString(R.string.training_calories, training.training_calories)
             setOnClickListener {
                 findNavController().navigate(TrainingsFragmentDirections.actionTrainingsFragmentToTrainingDetails(
-                    TrainingSafeArg(training.training_id, training.created_by.nick, training.name)
+                    TrainingSafeArg(training.training_id, training.created_by.nick, training.name, training.about)
                 ))
             }
         }

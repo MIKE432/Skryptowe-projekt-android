@@ -12,14 +12,44 @@
         tools:header_view_subtitle="by Michał Raszczuk"
         tools:header_view_title="Ostry trening brzucha"
         app:header_view_leading_icon="@drawable/back_icon128"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/training_details_series_list"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/training_details_header"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:nestedScrollingEnabled="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/training_details_header">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/training_details_header"
+                android:id="@+id/add_training_details_about"
+                android:layout_margin="5dp">
+                <TextView
+                    android:id="@+id/main_input_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about"
+                    style="@style/Roboto14Pt"/>
+                <TextView
+                    android:id="@+id/training_details_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Roboto14Pt"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/training_details_series_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/training_details_header"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

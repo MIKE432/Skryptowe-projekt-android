@@ -1,5 +1,6 @@
 package com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,14 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.apusart.skryptowe_projekt_android.R
+import com.apusart.skryptowe_projekt_android.appComponent
 import com.apusart.skryptowe_projekt_android.databinding.AddTrainingDetailsBinding
+import javax.inject.Inject
 
 class AddTrainingDetailsFragment: Fragment() {
+
     private val viewModel: AddTrainingProcessViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -23,10 +28,5 @@ class AddTrainingDetailsFragment: Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.setTrainingType(arguments?.getString("trainingType"))
     }
 }

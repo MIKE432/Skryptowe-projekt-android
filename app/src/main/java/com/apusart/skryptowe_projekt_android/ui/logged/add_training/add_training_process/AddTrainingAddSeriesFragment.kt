@@ -1,5 +1,7 @@
 package com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +15,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.apusart.skryptowe_projekt_android.R
 import com.apusart.skryptowe_projekt_android.api.models.*
+import com.apusart.skryptowe_projekt_android.appComponent
+import com.apusart.skryptowe_projekt_android.tools.Codes
+import com.apusart.skryptowe_projekt_android.tools.getPathFromUri
 import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.ExercisesAdapter
 import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.SeriesAdapter
 import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.TrainingDetailsDirections
 import kotlinx.android.synthetic.main.add_training_series.*
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
 import kotlinx.android.synthetic.main.series_list_item.view.*
+import javax.inject.Inject
 
 class AddTrainingAddSeriesFragment : Fragment(R.layout.add_training_series) {
 
@@ -37,8 +43,26 @@ class AddTrainingAddSeriesFragment : Fragment(R.layout.add_training_series) {
             seriesAdapter.submitList(it)
         })
 
+        add_training_series_series_form.setOnPhotoClickListener {
+            Intent(
+                Intent.ACTION_PICK
+            ).also {
+                it.type = "image/jpg"
+                startActivityForResult(it, Codes.GET_PHOTO_CODE)
+            }
+        }
+
         add_training_series_series_form.setUp {
             viewModel.addSeries(it)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Codes.GET_PHOTO_CODE) {
+            val imageUri = data?.data
+            if (imageUri != null)
+                add_training_series_series_form.currentPhoto = imageUri
         }
     }
 }
