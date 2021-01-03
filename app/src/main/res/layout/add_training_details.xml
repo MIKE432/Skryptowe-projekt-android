@@ -33,6 +33,7 @@
             android:gravity="bottom"
             />
         <LinearLayout
+            android:id="@+id/add_training_details_training_type_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -49,7 +50,15 @@
                 android:layout_height="wrap_content"
                 style="@style/Roboto14Pt"
                 android:text="@{viewModel.trainingType}"
+                android:layout_marginTop="5dp"
                 android:textSize="16sp" />
         </LinearLayout>
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/_public"
+            app:layout_constraintTop_toBottomOf="@id/add_training_details_training_type_container"
+            android:layout_marginTop="10dp"
+            android:checked="@={viewModel.trainingIsPublic}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
