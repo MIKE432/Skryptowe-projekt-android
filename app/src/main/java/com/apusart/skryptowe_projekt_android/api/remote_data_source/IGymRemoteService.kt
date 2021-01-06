@@ -64,6 +64,18 @@ interface IGymRemoteService {
     ): Response<Training>
 
     @DELETE("api/trainings/{training_id}")
-    suspend fun deleteTrainingById(@Path("training_id") training_id: Int, @Query("session_id") session_id: String? = null): Response<CodeAndStatusResponse>
+    suspend fun deleteTrainingById(
+        @Path("training_id") training_id: Int,
+        @Query("session_id") session_id: String? = null
+    ): Response<CodeAndStatusResponse>
+
+    @GET("api/trainings")
+    suspend fun getTrainingByFilters(
+        @Query("name") name: String?,
+        @Query("calories_min") calories_min: Int?,
+        @Query("calories_max") calories_max: Int?,
+        @Query("type") type: String?,
+        @Query("session_id") session_id: String? = ""
+    ): Response<List<TrainingForList>>
 
 }

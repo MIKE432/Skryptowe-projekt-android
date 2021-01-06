@@ -10,11 +10,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
 import com.apusart.skryptowe_projekt_android.R
+import com.apusart.skryptowe_projekt_android.appComponent
+import com.apusart.skryptowe_projekt_android.ui.logged.search.SearchViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.main_logged.*
+import javax.inject.Inject
 
 class MainLoggedActivity : AppCompatActivity(R.layout.main_logged) {
+
+    val viewModel: SearchViewModel by viewModels()
 
     override fun onBackPressed() {
         val navController = findNavController(R.id.main_logged_fragment_container)

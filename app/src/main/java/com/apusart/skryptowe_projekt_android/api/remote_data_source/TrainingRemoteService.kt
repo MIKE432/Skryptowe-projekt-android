@@ -1,6 +1,7 @@
 package com.apusart.skryptowe_projekt_android.api.remote_data_source
 
 import com.apusart.skryptowe_projekt_android.api.models.*
+import com.apusart.skryptowe_projekt_android.ui.logged.search.Filters
 
 import javax.inject.Inject
 
@@ -49,5 +50,25 @@ class TrainingRemoteService @Inject constructor(
             return Resource.error(errorBody.message)
 
         return Resource.success(true)
+    }
+
+    suspend fun getFilteredTrainings(
+        filters: Filters?,
+        session_id: String?
+    ): Resource<List<TrainingForList>> {
+        val response = service.getTrainingByFilters(
+            filters?.trainingName,
+            filters?.trainingCaloriesMin,
+            filters?.trainingCaloriesMax,
+            filters?.trainingType,
+            session_id
+        )
+        val body = response.body()
+        val errorBody = parseErrorBody(response.errorBody()?.string())
+
+        if (!response.isSuccessful)
+            return Resource.error(errorBody.message)
+
+        return Resource.success(body!!)
     }
 }

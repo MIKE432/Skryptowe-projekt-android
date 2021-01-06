@@ -8,6 +8,7 @@ import com.apusart.skryptowe_projekt_android.api.models.*
 import com.apusart.skryptowe_projekt_android.api.remote_data_source.ExerciseRemoteService
 import com.apusart.skryptowe_projekt_android.api.remote_data_source.SeriesRemoteService
 import com.apusart.skryptowe_projekt_android.api.remote_data_source.TrainingRemoteService
+import com.apusart.skryptowe_projekt_android.ui.logged.search.Filters
 import javax.inject.Inject
 
 class TrainingRepository @Inject constructor(
@@ -64,5 +65,12 @@ class TrainingRepository @Inject constructor(
         val sessionId = currentUser.data?.session_id
 
         return trainingRemoteService.deleteTrainingById(trainingId, sessionId)
+    }
+
+    suspend fun getFilteredTrainings(filters: Filters?): Resource<List<TrainingForList>> {
+        val currentUser = userLocalService.getCurrentUser()
+        val sessionId = currentUser.data?.session_id
+
+        return trainingRemoteService.getFilteredTrainings(filters, sessionId)
     }
 }

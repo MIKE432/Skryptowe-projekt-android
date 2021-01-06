@@ -10,9 +10,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:header_view_trailing_icon="@drawable/finder_icon128"
         app:header_view_title="@string/find_training"/>
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_trainings_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/search"
-        android:gravity="center"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/search_header"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

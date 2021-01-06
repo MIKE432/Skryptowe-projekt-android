@@ -58,6 +58,9 @@
     <string name="about">About</string>
     <string name="yt_link">Watch short instruction video</string>
     <string name="add_exercise">Add exercise</string>
+    <string name="apply">apply</string>
+    <string name="calories_min">Calories min</string>
+    <string name="calories_max">Calories max</string>
     <string-array name="exercises_type">
         <item>OTHER</item>
         <item>ABS</item>
@@ -69,5 +72,21 @@
         <item>SHOULDER</item>
         <item>STRETCHING</item>
         <item>WARMUP</item>
+    </string-array>
+    <string-array name="training_type">
+        <item>ALL</item>
+        <item>OTHER</item>
+        <item>AEROBIC</item>
+        <item>BALANCE</item>
+        <item>CARDIO</item>
+        <item>CIRCUIT</item>
+        <item>FUNCTIONAL</item>
+        <item>HIIT</item>
+        <item>INTERVAL</item>
+        <item>RECOVERY</item>
+        <item>STRENGTH</item>
+        <item>STRETCHING</item>
+        <item>SUPERSET</item>
+        <item>TABATA</item>
     </string-array>
 </resources>
