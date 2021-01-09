@@ -26,15 +26,6 @@ data class User(
     val session_id: String?
 )
 
-data class UserResponse(
-    val user_id: Int,
-    val nick: String,
-    val name: String,
-    val surname: String,
-    val avatar: String?,
-    val session_id: String?
-)
-
 data class SessionIdRequest(
     val session_id: String
 )

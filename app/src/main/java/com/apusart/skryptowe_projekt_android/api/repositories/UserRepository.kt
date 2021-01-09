@@ -12,9 +12,6 @@ class UserRepository @Inject constructor(
     private val userRemoteService: UserRemoteService,
     private val userLocalService: UserLocalService
 ) {
-    suspend fun uploadPhoto(filePath: String) {
-        userRemoteService.uploadPhoto(filePath)
-    }
 
     suspend fun registerUser(
         nick: String,

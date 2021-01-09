@@ -61,6 +61,7 @@
     <string name="apply">apply</string>
     <string name="calories_min">Calories min</string>
     <string name="calories_max">Calories max</string>
+    <string name="delete_account">Delete account</string>
     <string-array name="exercises_type">
         <item>OTHER</item>
         <item>ABS</item>

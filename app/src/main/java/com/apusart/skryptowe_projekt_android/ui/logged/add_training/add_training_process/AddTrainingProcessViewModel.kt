@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
+import java.text.FieldPosition
 
 class AddTrainingProcessViewModel:
     ViewModel() {
@@ -74,6 +75,11 @@ class AddTrainingProcessViewModel:
 
         trainingCalories.value = trainingCalories.value?.plus(c*s.iteration)
         series.value = series.value?.plus(s)
+    }
+
+    fun removeSeries(position: Int) {
+        if (series.value?.size ?: 0 > position)
+        series.value = series.value?.minus(series.value!![position])
     }
 
     fun createTraining() {

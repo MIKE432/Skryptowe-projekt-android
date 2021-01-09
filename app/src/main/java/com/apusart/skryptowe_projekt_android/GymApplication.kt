@@ -9,6 +9,7 @@ import com.apusart.skryptowe_projekt_android.ui.guest.register_activity.Register
 import com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingAddSeriesFragment
 import com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingDetailsFragment
 import com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process.AddTrainingProcessActivity
+import com.apusart.skryptowe_projekt_android.ui.logged.added_trainings.AddedTrainingsActivity
 import com.apusart.skryptowe_projekt_android.ui.logged.main.MainLoggedActivity
 import com.apusart.skryptowe_projekt_android.ui.logged.profile.ProfileFragment
 import com.apusart.skryptowe_projekt_android.ui.logged.search.FiltersDialogFragment
@@ -33,6 +34,7 @@ interface ApplicationComponent {
     fun inject(fragment: AddTrainingDetailsFragment)
     fun inject(fragment: AddTrainingAddSeriesFragment)
     fun inject(fragment: FiltersDialogFragment)
+    fun inject(fragment: AddedTrainingsActivity)
 
 
     @Component.Builder

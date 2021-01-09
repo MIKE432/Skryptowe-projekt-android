@@ -16,12 +16,6 @@ class LoginActivityViewModel @Inject constructor(private val userRepository: Use
     val passwordText = MutableLiveData<String>()
     val user = MutableLiveData<Resource<User>>()
 
-    fun uploadImage(filePath: String) {
-        viewModelScope.launch {
-            userRepository.uploadPhoto(filePath)
-        }
-    }
-
     fun logIn() {
         viewModelScope.launch {
             try {

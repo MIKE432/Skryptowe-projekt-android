@@ -6,6 +6,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.GsonBuilder
 import kotlinx.android.parcel.Parcelize
+import retrofit2.Response
+import java.lang.Exception
 
 class Resource<out T>(val status: Status, val data: T?, val message: String?) {
     enum class Status {
@@ -42,12 +44,29 @@ fun <T> handleResource(
     }
 }
 
+suspend fun<T> performRequest(func: suspend () -> Response<T>): Resource<T> {
+    val response = func()
+
+    val body = response.body()
+    val errorBody = parseErrorBody(response.errorBody()?.string())
+
+    if (!response.isSuccessful)
+        return Resource.error(errorBody.message)
+
+    return Resource.success(body!!)
+}
+
 fun parseErrorBody(errorBody: String?): ErrorBody {
     if (errorBody == null)
         return ErrorBody()
-
     val gson = GsonBuilder().create()
-    return gson.fromJson(errorBody, ErrorBody::class.java)
+
+    return try {
+        gson.fromJson(errorBody, ErrorBody::class.java)
+    } catch (x: Exception) {
+        ErrorBody(500, "Internal server error")
+    }
+
 }
 
 data class ErrorBody(

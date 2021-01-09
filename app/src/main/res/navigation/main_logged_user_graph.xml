@@ -22,7 +22,11 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.apusart.skryptowe_projekt_android.ui.logged.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_addedTrainingsActivity"
+            app:destination="@id/addedTrainingsActivity" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.apusart.skryptowe_projekt_android.ui.logged.search.SearchFragment"
@@ -64,4 +68,8 @@
             android:name="trainingType"
             app:argType="string"/>
     </activity>
+    <activity
+        android:id="@+id/addedTrainingsActivity"
+        android:name="com.apusart.skryptowe_projekt_android.ui.logged.added_trainings.AddedTrainingsActivity"
+        android:label="AddedTrainingsActivity" />
 </navigation>

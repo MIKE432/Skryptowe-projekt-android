@@ -11,14 +11,6 @@ class SeriesRemoteService @Inject constructor(
         training_id: Int,
         session_id: String? = null
     ): Resource<Series> {
-        val response = service.createSeries(training_id, series, session_id)
-
-        val body = response.body()
-        val errorBody = parseErrorBody(response.errorBody()?.string())
-
-        if (!response.isSuccessful)
-            return Resource.error(errorBody.message)
-
-        return Resource.success(body!!)
+        return performRequest { service.createSeries(training_id, series, session_id) }
     }
 }

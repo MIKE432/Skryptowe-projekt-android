@@ -26,6 +26,14 @@ class TrainingRepository @Inject constructor(
         }
     }
 
+    fun getUserTrainings(): LiveData<Resource<List<TrainingForList>>> {
+        return liveData {
+            val currentUser = userLocalService.getCurrentUser()
+            if (currentUser.status == Resource.Status.SUCCESS)
+                emit(trainingRemoteService.getUserTrainings(currentUser.data!!.user_id, currentUser.data.session_id))
+        }
+    }
+
     suspend fun getTrainingById(training_id: Int): Resource<Training> {
         val currentUser = userLocalService.getCurrentUser()
         return trainingRemoteService.getTrainingById(training_id, currentUser.data?.session_id)

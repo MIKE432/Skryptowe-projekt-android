@@ -16,13 +16,13 @@ interface IGymRemoteService {
     )
 
     @POST("api/user/register")
-    suspend fun registerUser(@Body registerBody: UserRegisterRequest): Response<UserResponse>
+    suspend fun registerUser(@Body registerBody: UserRegisterRequest): Response<User>
 
     @POST("api/user/login")
-    suspend fun loginUser(@Body registerBody: UserLoginRequest): Response<UserResponse>
+    suspend fun loginUser(@Body registerBody: UserLoginRequest): Response<User>
 
     @GET("api/users/{user_id}")
-    suspend fun getUserById(@Path("user_id") user_id: Int): Response<UserResponse>
+    suspend fun getUserById(@Path("user_id") user_id: Int): Response<User>
 
     @PUT("api/user/logout")
     suspend fun logoutUser(@Body logoutBody: SessionIdRequest): Response<CodeAndStatusResponse>
@@ -77,5 +77,8 @@ interface IGymRemoteService {
         @Query("type") type: String?,
         @Query("session_id") session_id: String? = ""
     ): Response<List<TrainingForList>>
+
+    @GET("api/users/{user_id}/trainings")
+    suspend fun getUserTrainings(@Path("user_id") user_id: Int, @Query("session_id") session_id: String? = null): Response<List<TrainingForList>>
 
 }

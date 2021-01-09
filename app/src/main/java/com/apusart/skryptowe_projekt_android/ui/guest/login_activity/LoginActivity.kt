@@ -61,13 +61,4 @@ class LoginActivity : AppCompatActivity() {
         })
 
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Codes.GET_PHOTO_CODE) {
-            val imageUri = data?.data
-            if (imageUri != null)
-                viewModel.uploadImage(getPathFromUri(imageUri, applicationContext))
-        }
-    }
 }

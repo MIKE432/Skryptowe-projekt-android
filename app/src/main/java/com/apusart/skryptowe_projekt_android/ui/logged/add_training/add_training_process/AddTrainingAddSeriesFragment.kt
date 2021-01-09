@@ -1,6 +1,5 @@
 package com.apusart.skryptowe_projekt_android.ui.logged.add_training.add_training_process
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,32 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.apusart.skryptowe_projekt_android.R
-import com.apusart.skryptowe_projekt_android.api.models.*
-import com.apusart.skryptowe_projekt_android.appComponent
+import com.apusart.skryptowe_projekt_android.api.models.ExerciseAddRequest
+import com.apusart.skryptowe_projekt_android.api.models.SeriesAddRequest
 import com.apusart.skryptowe_projekt_android.tools.Codes
-import com.apusart.skryptowe_projekt_android.tools.getPathFromUri
-import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.ExercisesAdapter
-import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.SeriesAdapter
-import com.apusart.skryptowe_projekt_android.ui.logged.trainings.training_details.TrainingDetailsDirections
 import kotlinx.android.synthetic.main.add_training_series.*
 import kotlinx.android.synthetic.main.exercise_list_item.view.*
 import kotlinx.android.synthetic.main.series_list_item.view.*
-import javax.inject.Inject
 
 class AddTrainingAddSeriesFragment : Fragment(R.layout.add_training_series) {
 
     private val viewModel: AddTrainingProcessViewModel by activityViewModels()
     private lateinit var seriesAdapter: SeriesAddRequestAdapter
+    private lateinit var stds: ItemTouchHelper
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         seriesAdapter = SeriesAddRequestAdapter()
+        stds = ItemTouchHelper(SwipeToDeleteCallback(seriesAdapter))
+        stds.attachToRecyclerView(add_training_series_series_list)
+        seriesAdapter.deleteItem = viewModel::removeSeries
 
         add_training_series_series_list.apply {
             adapter = seriesAdapter
@@ -69,6 +63,7 @@ class AddTrainingAddSeriesFragment : Fragment(R.layout.add_training_series) {
 
 class SeriesAddRequestAdapter :
     ListAdapter<SeriesAddRequest, SeriesAddRequestViewHolder>(diffUtil) {
+    var deleteItem: (Int) -> Unit =  { _ -> }
     object diffUtil : DiffUtil.ItemCallback<SeriesAddRequest>() {
         override fun areItemsTheSame(
             oldItem: SeriesAddRequest,
@@ -95,6 +90,24 @@ class SeriesAddRequestAdapter :
     override fun onBindViewHolder(holder: SeriesAddRequestViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+}
+
+internal class SwipeToDeleteCallback(adapter: SeriesAddRequestAdapter) :
+    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+    private val adapter: SeriesAddRequestAdapter = adapter
+    override fun onMove(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder,
+        target: RecyclerView.ViewHolder
+    ): Boolean {
+        return false
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
+        adapter.deleteItem(position)
+    }
+
 }
 
 class SeriesAddRequestViewHolder(container: View) : RecyclerView.ViewHolder(container) {

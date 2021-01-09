@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.apusart.skryptowe_projekt_android.R
 import com.apusart.skryptowe_projekt_android.api.models.handleResource
 import com.apusart.skryptowe_projekt_android.appComponent
@@ -23,18 +24,7 @@ class ProfileFragment : Fragment(R.layout.profile) {
         requireActivity().appComponent.inject(this)
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.user.observe(viewLifecycleOwner, { res ->
-            handleResource(res,
-                onSuccess = {
-                    profile_page_user_name.text = "${it?.name} ${it?.surname}"
-                    if (it?.avatar != null)
-                        profile_page_user_picture.loadPhoto(Defaults.imagesUrl + it.avatar)
-                }, onPending = {
 
-                }, onError = { _, _ ->
-
-                })
-        })
 
         alertDialog = AlertDialog.Builder(requireContext())
         alertDialog
@@ -52,12 +42,32 @@ class ProfileFragment : Fragment(R.layout.profile) {
             alertDialog.show()
         }
 
+        profile_page_added_trainings_button.setOnClickListener {
+            findNavController().navigate(R.id.addedTrainingsActivity)
+        }
+        setUpObservers()
+    }
+
+    private fun setUpObservers() {
+        viewModel.user.observe(viewLifecycleOwner, { res ->
+            handleResource(res,
+                onSuccess = {
+                    profile_page_user_name.text = "${it?.name} ${it?.surname}"
+                    if (it?.avatar != null)
+                        profile_page_user_picture.loadPhoto(Defaults.imagesUrl + it.avatar)
+                }, onPending = {
+
+                }, onError = { _, _ ->
+
+                })
+        })
+
         viewModel.isLoggedOut.observe(viewLifecycleOwner, { res ->
             handleResource(res,
                 onSuccess = {
                     startActivity(
                         Intent(requireContext(), InitialActivity::class.java)
-                        .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
+                            .addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION))
                     requireActivity().finishAffinity()
                 }, onPending = {
 

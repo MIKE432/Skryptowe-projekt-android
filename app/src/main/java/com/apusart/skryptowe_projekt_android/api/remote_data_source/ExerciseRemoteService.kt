@@ -1,9 +1,6 @@
 package com.apusart.skryptowe_projekt_android.api.remote_data_source
 
-import com.apusart.skryptowe_projekt_android.api.models.Exercise
-import com.apusart.skryptowe_projekt_android.api.models.ExerciseAddRequest
-import com.apusart.skryptowe_projekt_android.api.models.Resource
-import com.apusart.skryptowe_projekt_android.api.models.parseErrorBody
+import com.apusart.skryptowe_projekt_android.api.models.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -39,24 +36,19 @@ class ExerciseRemoteService @Inject constructor(
         val exerciseType = exercise.exercise_type.toRequestBody(MultipartBody.FORM)
         val exerciseCalories =
             exercise.exercise_calories.toString().toRequestBody(MultipartBody.FORM)
-        val response = service.createExercise(
-            series_id,
-            photoRequest,
-            name,
-            about,
-            number,
-            ytLink,
-            exerciseType,
-            exerciseCalories,
-            session_id
-        )
+        return performRequest {
+            service.createExercise(
+                series_id,
+                photoRequest,
+                name,
+                about,
+                number,
+                ytLink,
+                exerciseType,
+                exerciseCalories,
+                session_id
+            )
+        }
 
-        val body = response.body()
-        val errorBody = parseErrorBody(response.errorBody()?.string())
-
-        if (!response.isSuccessful)
-            return Resource.error(errorBody.message)
-
-        return Resource.success(body!!)
     }
 }

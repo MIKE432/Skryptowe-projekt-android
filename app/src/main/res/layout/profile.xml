@@ -53,13 +53,24 @@
             />
 
         <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
-            android:id="@+id/profile_page_inbox_button"
+            android:id="@+id/profile_page_added_trainings_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/profile_page_edit_profile_button"
             android:layout_marginTop="5dp"
             app:profile_button_name="@string/added_trainings"
             app:profile_button_icon="@drawable/inbox_icon128"
+            android:background="@drawable/profile_button_background"
+            />
+
+        <com.apusart.skryptowe_projekt_android.ui.components.ProfileButton
+            android:id="@+id/profile_page_remove_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/profile_page_added_trainings_button"
+            android:layout_marginTop="5dp"
+            app:profile_button_name="@string/delete_account"
+            app:profile_button_icon="@drawable/close_icon128"
             android:background="@drawable/profile_button_background"
             />
 
