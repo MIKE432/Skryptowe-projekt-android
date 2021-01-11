@@ -20,14 +20,8 @@ class TrainingRemoteService @Inject constructor(
         return performRequest { service.createTraining(training, session_id) }
     }
 
-    suspend fun deleteTrainingById(training_id: Int, session_id: String?): Resource<Boolean> {
-        val response = service.deleteTrainingById(training_id, session_id)
-        val errorBody = parseErrorBody(response.errorBody()?.string())
-
-        if (!response.isSuccessful)
-            return Resource.error(errorBody.message)
-
-        return Resource.success(true)
+    suspend fun deleteTrainingById(training_id: Int, session_id: String?): Resource<Int> {
+        return performRequest { service.deleteTrainingById(training_id, session_id) }
     }
 
     suspend fun getFilteredTrainings(

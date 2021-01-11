@@ -68,7 +68,7 @@ class TrainingRepository @Inject constructor(
         return Resource.success(training.data!!)
     }
 
-    suspend fun deleteTrainingById(trainingId: Int): Resource<Boolean> {
+    suspend fun deleteTrainingById(trainingId: Int): Resource<Int> {
         val currentUser = userLocalService.getCurrentUser()
         val sessionId = currentUser.data?.session_id
 

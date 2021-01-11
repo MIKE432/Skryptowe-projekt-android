@@ -67,7 +67,7 @@ interface IGymRemoteService {
     suspend fun deleteTrainingById(
         @Path("training_id") training_id: Int,
         @Query("session_id") session_id: String? = null
-    ): Response<CodeAndStatusResponse>
+    ): Response<Int>
 
     @GET("api/trainings")
     suspend fun getTrainingByFilters(
