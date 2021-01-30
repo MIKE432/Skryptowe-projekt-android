@@ -12,6 +12,7 @@ import javax.inject.Inject
 class ProfileFragmentViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
     val user = userRepository.getUser()
     val isLoggedOut = MutableLiveData<Resource<Boolean>>()
+    val isDeleted = MutableLiveData<Resource<Boolean>>()
 
     fun logout() {
         viewModelScope.launch {
@@ -20,6 +21,17 @@ class ProfileFragmentViewModel @Inject constructor(private val userRepository: U
                 isLoggedOut.value = userRepository.logout()
             } catch (e: Exception) {
                 isLoggedOut.value = Resource.error(e.message)
+            }
+        }
+    }
+
+    fun deleteUser() {
+        viewModelScope.launch {
+            try {
+                isDeleted.value = Resource.pending()
+                isDeleted.value = userRepository.deleteUser()
+            } catch (e: Exception) {
+                isDeleted.value = Resource.error(e.message)
             }
         }
     }

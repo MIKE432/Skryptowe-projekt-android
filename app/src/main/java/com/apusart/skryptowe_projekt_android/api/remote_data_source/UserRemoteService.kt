@@ -35,7 +35,19 @@ class UserRemoteService @Inject constructor(
     suspend fun logoutUser(session_id: String): Resource<Boolean> {
         val response = service.logoutUser(SessionIdRequest(session_id))
 
-        val body = response.body()
+
+        val errorBody = parseErrorBody(response.errorBody()?.string())
+
+        if (!response.isSuccessful)
+            return Resource.error(errorBody.message)
+
+        return Resource.success(true)
+    }
+
+    suspend fun deleteUser(user_id: Int, session_id: String): Resource<Boolean> {
+        val response = service.deleteUser(user_id, session_id)
+
+
         val errorBody = parseErrorBody(response.errorBody()?.string())
 
         if (!response.isSuccessful)

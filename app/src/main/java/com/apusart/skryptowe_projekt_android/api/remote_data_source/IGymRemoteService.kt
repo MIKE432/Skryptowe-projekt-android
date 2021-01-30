@@ -81,4 +81,7 @@ interface IGymRemoteService {
     @GET("api/users/{user_id}/trainings")
     suspend fun getUserTrainings(@Path("user_id") user_id: Int, @Query("session_id") session_id: String? = null): Response<List<TrainingForList>>
 
+    @DELETE("api/users/{user_id}")
+    suspend fun deleteUser(@Path("user_id") user_id: Int, @Query("session_id") session_id: String? = null): Response<CodeAndStatusResponse>
+
 }

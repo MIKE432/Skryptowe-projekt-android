@@ -34,7 +34,6 @@ class SearchFragment : Fragment(R.layout.search) {
         trainingsAdapter = TrainingsAdapter()
 
         viewModel.trainings.observe(viewLifecycleOwner, { res ->
-            val x = 10
             handleResource(res,
                 onSuccess = {
                     trainingsAdapter.submitList(it)
@@ -54,7 +53,6 @@ class SearchFragment : Fragment(R.layout.search) {
         val filtersDialog = FiltersDialogFragment()
         filtersDialog.show(parentFragmentManager, "Dialog")
     }
-
 }
 
 class TrainingsAdapter : ListAdapter<TrainingForList, TrainingForListViewHolder>(diffUtil) {

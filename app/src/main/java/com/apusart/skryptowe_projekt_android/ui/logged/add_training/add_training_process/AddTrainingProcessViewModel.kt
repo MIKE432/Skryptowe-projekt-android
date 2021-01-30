@@ -49,7 +49,7 @@ class AddTrainingProcessViewModel:
     val trainingType = MutableLiveData<String>()
 
     val trainingName = MutableLiveData<String>()
-    val trainingAbout = MutableLiveData<String>()
+    val trainingAbout = MutableLiveData("")
     val trainingIsPublic = MutableLiveData(true)
     val series = MutableLiveData(listOf<SeriesAddRequest>())
     val trainingCalories = MutableLiveData(0)

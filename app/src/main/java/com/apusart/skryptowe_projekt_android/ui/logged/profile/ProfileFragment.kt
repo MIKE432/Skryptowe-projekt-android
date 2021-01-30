@@ -18,33 +18,16 @@ class ProfileFragment : Fragment(R.layout.profile) {
 
     @Inject
     lateinit var viewModel: ProfileFragmentViewModel
-    private lateinit var alertDialog: AlertDialog.Builder
+    private lateinit var logoutAlertDialog: AlertDialog.Builder
+    private lateinit var deleteUserDialog: AlertDialog.Builder
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         requireActivity().appComponent.inject(this)
         super.onViewCreated(view, savedInstanceState)
 
 
-
-        alertDialog = AlertDialog.Builder(requireContext())
-        alertDialog
-            .setTitle(getString(R.string.sign_out))
-            .setMessage(getString(R.string.wanna_sign_out))
-            .setPositiveButton(R.string.sign_out) { _, _ ->
-                viewModel.logout()
-            }
-            .setNegativeButton(R.string.abort) { dialog, _ ->
-                dialog.cancel()
-            }
-
-
-        profile_page_logout_button.setOnClickListener {
-            alertDialog.show()
-        }
-
-        profile_page_added_trainings_button.setOnClickListener {
-            findNavController().navigate(R.id.addedTrainingsActivity)
-        }
+        setupDialogs()
+        setupOnClickListeners()
         setUpObservers()
     }
 
@@ -74,7 +57,57 @@ class ProfileFragment : Fragment(R.layout.profile) {
                 }, onError = { _, _ ->
 
                 })
-
         })
+
+        viewModel.isDeleted.observe(viewLifecycleOwner, { res ->
+            handleResource(res,
+            onSuccess = {
+                if (it == true) {
+                    startActivity(Intent(requireActivity(), InitialActivity::class.java))
+                    requireActivity().finishAffinity()
+                }
+
+            })
+        })
+    }
+
+    private fun setupOnClickListeners() {
+        profile_page_logout_button.setOnClickListener {
+            logoutAlertDialog.show()
+        }
+
+        profile_page_added_trainings_button.setOnClickListener {
+            findNavController().navigate(R.id.addedTrainingsActivity)
+        }
+
+        profile_page_remove_profile.setOnClickListener {
+            deleteUserDialog.show()
+        }
+    }
+
+    private fun setupDialogs() {
+
+        deleteUserDialog = AlertDialog.Builder(requireContext())
+        deleteUserDialog
+            .setTitle(getString(R.string.delete_account))
+            .setMessage(getString(R.string.delete_account_for_sure))
+            .setPositiveButton(R.string.yes) { _, _ ->
+                viewModel.deleteUser()
+            }
+            .setNegativeButton(R.string.abort) { dialog, _ ->
+                dialog.cancel()
+            }
+
+
+        logoutAlertDialog = AlertDialog.Builder(requireContext())
+        logoutAlertDialog
+            .setTitle(getString(R.string.sign_out))
+            .setMessage(getString(R.string.wanna_sign_out))
+            .setPositiveButton(R.string.sign_out) { _, _ ->
+                viewModel.logout()
+            }
+            .setNegativeButton(R.string.abort) { dialog, _ ->
+                dialog.cancel()
+            }
     }
 }

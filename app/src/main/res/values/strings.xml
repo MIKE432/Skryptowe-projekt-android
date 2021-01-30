@@ -60,7 +60,7 @@
     <string name="add_exercise">Add exercise</string>
     <string name="apply">apply</string>
     <string name="calories_min">Calories min</string>
-    <string name="calories_max">Calories max</string>
+    <string name="calories_max">Calories \Nmax</string>
     <string name="delete_account">Delete account</string>
     <string-array name="exercises_type">
         <item>OTHER</item>
@@ -90,4 +90,6 @@
         <item>SUPERSET</item>
         <item>TABATA</item>
     </string-array>
+    <string name="delete_account_for_sure">Do you really want to delete this account?</string>
+    <string name="yes">Yes</string>
 </resources>

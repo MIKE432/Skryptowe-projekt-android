@@ -64,4 +64,17 @@ class UserRepository @Inject constructor(
 
         return Resource.error("Cannot logout user")
     }
+
+    suspend fun deleteUser(): Resource<Boolean> {
+        val user = userLocalService.getCurrentUser()
+        if (user.status == Resource.Status.SUCCESS) {
+            user.data?.user_id ?: return Resource.error()
+            user.data.session_id ?: return Resource.error("Invalid session id")
+            val isDeleted = userRemoteService.deleteUser(user.data.user_id, user.data.session_id)
+            if (isDeleted.status == Resource.Status.SUCCESS)
+                userLocalService.logoutUser()
+            return isDeleted
+        }
+        return Resource.error("Cannot get current user, logout")
+    }
 }

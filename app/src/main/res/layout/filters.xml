@@ -8,9 +8,11 @@
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="20dp">
         <com.apusart.components.MainInput
             android:id="@+id/filters_name"
             android:layout_width="match_parent"
@@ -20,33 +22,37 @@
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:layout_margin="10dp" />
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:orientation="horizontal"
+            android:gravity="center">
             <com.apusart.components.MainInput
                 android:id="@+id/filters_calories_min"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:paddingHorizontal="10dp"
                 app:layout_constraintEnd_toStartOf="@id/filters_calories_max"
                 app:main_input_input_title="@string/calories_min"
                 android:imeOptions="actionNext"
                 android:inputType="number" />
             <com.apusart.components.MainInput
                 android:id="@+id/filters_calories_max"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
+                android:paddingHorizontal="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/filters_calories_min"
                 app:main_input_input_title="@string/calories_max"
                 android:imeOptions="actionNext"
                 android:inputType="number" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
         <Spinner
             android:id="@+id/filters_type"
             android:layout_width="match_parent"

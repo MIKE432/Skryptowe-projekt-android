@@ -34,7 +34,7 @@ class FiltersDialogFragment: AppCompatDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: FiltersBinding = DataBindingUtil.inflate(inflater, R.layout.filters, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
